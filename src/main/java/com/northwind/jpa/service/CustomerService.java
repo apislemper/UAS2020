@@ -12,6 +12,10 @@ import java.util.NoSuchElementException;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 /**
@@ -73,5 +77,10 @@ public class CustomerService implements RepoService<Customers>{
     @Override
     public List<Customers> getAll() {
         return repo.findAll();
+    }
+    
+    public Page<Customers> getByPage(int page, int pageSize) {
+        Pageable pageable = PageRequest.of(page, pageSize);
+        return repo.findAll(pageable);
     }
 }
