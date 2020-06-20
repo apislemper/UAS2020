@@ -5,12 +5,10 @@
  */
 package com.northwind.jpa.controller;
 
-import com.northwind.jpa.entity.Customers;
+import com.northwind.jpa.entity.Shippers;
 import com.northwind.jpa.entity.response.ApiResponse;
-import com.northwind.jpa.service.CustomerService;
-import java.util.List;
+import com.northwind.jpa.service.ShipperService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,35 +16,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import sun.print.resources.serviceui;
 
 /**
  *
  * @author ahza0
- */
+ */      
 @RestController
-@RequestMapping("/api/v1/customers")
-public class CustomerController {
+@RequestMapping("/api/v1/shippers")
+public class ShippersController {
     @Autowired
-    private CustomerService service;
+    private ShipperService service;
     
     @GetMapping("")
-    public ApiResponse getAll(
-            @RequestParam(defaultValue = "1") int page, 
-            @RequestParam(defaultValue = "10") int pageSize,  
-            @RequestParam(defaultValue = "", required = false) String search,
-            @RequestParam(defaultValue = "customerID", required = false) String sort,
-            @RequestParam(defaultValue = "true", required = false) boolean asc) {
-        String param = "%" + search + "%";
-        System.out.println("param: " + param);
-        Page<Customers> result = service.getByPage(page - 1, pageSize, param, sort, asc);
-        return ApiResponse.ok(result);
+    public ApiResponse getAll(){
+        return ApiResponse.ok(service.getAll());
     }
     
     @GetMapping("/{id}")
     public ApiResponse getByID(@PathVariable("id") String id) {
-        Customers cus = service.getById(id);
+        Shippers cus = service.getById(id);
         if (cus == null) {
             return ApiResponse.notFound();
         }
@@ -54,20 +44,20 @@ public class CustomerController {
     }
     
     @PostMapping("")
-    public ApiResponse create(@RequestBody Customers cus) {
-        if (service.getById(cus.getCustomerID()) != null) {
+    public ApiResponse create(@RequestBody Shippers shipper) {
+        if (service.getById(shipper.getShipperID()) != null) {
             return ApiResponse.conflict("Data conflict!");
         }
-        service.create(cus);
+        service.create(shipper);
         return ApiResponse.created("Create data success!");
     }
 
     @PutMapping("")
-    public ApiResponse update(@RequestBody Customers cus) {
-        if (service.getById(cus.getCustomerID()) == null) {
+    public ApiResponse update(@RequestBody Shippers shippers) {
+        if (service.getById(shippers.getShipperID()) == null) {
             return ApiResponse.notFound("Data not found");
         }
-        service.update(cus);
+        service.update(shippers);
         return ApiResponse.ok("Update data success!");
     }
 

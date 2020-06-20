@@ -79,8 +79,9 @@ public class CustomerService implements RepoService<Customers>{
         return repo.findAll();
     }
     
-    public Page<Customers> getByPage(int page, int pageSize) {
-        Pageable pageable = PageRequest.of(page, pageSize);
-        return repo.findAll(pageable);
+    public Page<Customers> getByPage(int page, int pageSize, String companyName, String sort, boolean asc) {
+        Sort sortBy = asc ? Sort.by(sort).ascending() : Sort.by(sort).descending();
+        Pageable pageable = PageRequest.of(page, pageSize, sortBy);
+        return repo.findByCompanyNameLike(companyName, pageable);
     }
 }

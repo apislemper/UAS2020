@@ -5,18 +5,15 @@
  */
 package com.northwind.jpa.repository;
 
-
-import com.northwind.jpa.entity.Customers;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.northwind.jpa.entity.Shippers;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author codeid
+ * @author ahza0
  */
 @Repository
-public interface CustomersRepository extends JpaRepository<Customers, String>{    
-    public Page<Customers> findByCompanyNameLike(String companyName, Pageable pageable);
+public interface ShippersRepository extends JpaRepository<Shippers, Integer>{
+    
 }
