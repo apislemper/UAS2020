@@ -18,7 +18,7 @@ import javax.validation.constraints.Size;
  * @author ahza0
  */
 @Entity
-@Table(name = "shippers")
+@Table(name = "Shippers")
 public class Shippers {
     private static final long serialVersionUID = 1L;
     
