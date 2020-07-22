@@ -22,10 +22,10 @@ import sun.security.util.Password;
  *
  * @author Hafish
  */
-public class Users {
+public class Users implements Serializable {
 @Entity
 @Table(name = "users") 
-public class Products implements Serializable{
+public class Users implements Serializable{
     private static final long serialVersionUID = 1L;
     
     
