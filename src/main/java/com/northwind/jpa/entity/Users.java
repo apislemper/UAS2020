@@ -7,6 +7,7 @@
 package com.northwind.jpa.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
+import sun.security.util.Password;
 
 /**
  *
@@ -48,7 +50,7 @@ public class Products implements Serializable{
     
     @Column(name = "position")
     @Max(30)
-    private Strig Position;
+    private String Position;
     
     @Column(name = "email")
     @Max(30)
@@ -59,10 +61,11 @@ public class Products implements Serializable{
     @Max(60)
     private Password Password;
     
-    public Users() {
+    public Users(){
     }
+    
 
-    public Users(Integer UserID, String Name, String Title, Date BirthDate, Date HireDate, Strig Position, String Email, Password Password) {
+    public Users(Integer UserID, String Name, String Title, Date BirthDate, Date HireDate, String Position, String Email, Password Password) {
         this.UserID = UserID;
         this.Name = Name;
         this.Title = Title;
@@ -74,19 +77,19 @@ public class Products implements Serializable{
     }
 
     public Integer getUserID() {
-        return productID;
+        return UserID;
     }
 
     public void setUserID(Integer UserID) {
-        this.productID = productID;
+        this.UserID = UserID;
     }
 
     public String getName() {
-        return productName;
+        return Name;
     }
 
     public void setName(String Name) {
-        this.productName = productName;
+        this.Name = Name;
     }
 
     public String getTitle() {
