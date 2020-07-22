@@ -7,7 +7,6 @@
 package com.northwind.jpa.entity;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;

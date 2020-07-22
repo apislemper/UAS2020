@@ -5,7 +5,7 @@
  */
 package com.northwind.jpa.repository;
 
-import com.northwind.jpa.entity.Products;
+import com.northwind.jpa.entity.Users;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
